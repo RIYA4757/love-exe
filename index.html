@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>8th year of togethernes.. ❤️ </title>
+<style>
+  :root{
+    --bg1:#a8edea;
+    --bg2:#faffd1;
+    --bg3:#ffd1dc;
+    --bg4:#e0c3fc;
+  }
+  html,body{
+    height:100%; margin:0;
+    font-family:'Courier New',monospace;
+    background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3),var(--bg4));
+    background-size:400% 400%; animation:gradientBG 18s ease infinite;
+    color:#333; overflow-x:hidden;
+  }
+  @keyframes gradientBG{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+  .wrap{max-width:980px;margin:20px auto;padding:18px;}
+  .terminal{background:rgba(255,255,255,0.8);color:#2a4d35;padding:18px;border-radius:10px;min-height:140px;box-shadow:0 8px 30px rgba(0,0,0,0.2);white-space:pre-line;overflow:hidden}
+  .timeline{margin:28px auto;background:rgba(255,255,255,0.3);border-radius:14px;padding:18px;backdrop-filter:blur(6px);box-shadow:0 8px 30px rgba(0,0,0,0.15)}
+  .timeline h2{text-align:center;margin:2px 0 14px 0;color:#2a4d35;}
+  .timeline-item{margin:14px 0;padding-left:12px;border-left:3px solid rgba(42,77,53,0.9);opacity:0;transform:translateY(6px);animation:fadeInUp 0.9s ease forwards}
+  @keyframes fadeInUp{to{opacity:1;transform:none}}
+  .hearts{position:fixed;inset:0;pointer-events:none;overflow:visible;z-index:2}
+  .heart{position:absolute;width:18px;height:18px;background:#ffd1dc;transform:rotate(45deg);border-radius:2px;opacity:0.95}
+  .heart:before,.heart:after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:#ffd1dc}
+  .heart:before{top:-9px;left:0}.heart:after{left:9px;top:0}
+  .media{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:18px}
+  .media img,.media video{max-width:280px;width:100%;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+  .ending{text-align:center;margin:34px 12px;color:#2a4d35;}
+  .ending .line{font-size:1.25rem;margin-bottom:8px}
+  @media(max-width:640px){.terminal{font-size:14px;min-height:120px}.media img,.media video{max-width:92%}}
+</style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="wrap">
+  <div class="terminal" id="terminal" aria-live="polite"></div>
+
+  <div class="timeline" id="timelineCard" aria-hidden="true">
+    <h2>Love Timeline v8.0</h2>
+    <div class="timeline-item" style="animation-delay:0s;">v1.0 - 2018: He said yes 💌</div>
+    <div class="timeline-item" style="animation-delay:1s;">v2.0 - 2019: 11th grade chaos & tution memories 🍕</div>
+    <div class="timeline-item" style="animation-delay:2s;">v3.0 - 2020: Lockdown calls & late-night texts 📱</div>
+    <div class="timeline-item" style="animation-delay:3s;">v4.0 - 2021: College coding & saturday evening ☕</div>
+    <div class="timeline-item" style="animation-delay:3s;">v4.5 - 2022: Overcoming little fights and misunderstandings ❤️</div>
+    <div class="timeline-item" style="animation-delay:4s;">v5.0 - 2023: Post degree depressing life 💼</div>
+    <div class="timeline-item" style="animation-delay:5s;">v6.0 - 2024: First MNC login 🧑‍💻❤️👩‍💻</div>
+    <div class="timeline-item" style="animation-delay:6s;">v7.0 - 2024: Long-distance patch update 🌍</div>
+    <div class="timeline-item" style="animation-delay:7s;">v8.0 - 2025: Stronger, smarter, still in love 💫</div>
+  </div>
+
+  <div class="media" aria-hidden="true">
+    <img src="photo_2025.jpg" alt="Photo 2" />
+  </div>
+
+  <div class="ending" aria-hidden="true">
+    <div class="line">“In a world of updates and versions, ours remains the most timeless connection-- written in the calmest code of love. ❤️”</div>
+    <div>— Riya ❤️ Piku</div>
+  </div>
+</div>
+
+<audio id="bgAudio" src="finding.mp3" loop preload="auto"></audio>
+
+<script>
+const terminalText=`> initializing Love.exe ...
+> version 8.0 detected
+> running since 23-Oct-2018
+> compiling memories ...
+> no bugs found ❤️
+> boot sequence complete
+> transitioning to timeline ...
+`;
+const terminalEl=document.getElementById('terminal');
+let tIndex=0;
+function typeTick(){
+  if(tIndex<terminalText.length){
+    terminalEl.textContent+=terminalText.charAt(tIndex++);
+    setTimeout(typeTick,40);
+  }else document.getElementById('timelineCard').setAttribute('aria-hidden','false');
+}
+typeTick();
+
+const items=document.querySelectorAll('.timeline-item');
+items.forEach(el=>{
+  const d=Number((el.style.animationDelay||'0s').replace('s',''))*1000;
+  setTimeout(()=>el.style.opacity='1',d+250);
+});
+
+const hearts=document.getElementById('hearts');
+function createHeart(){
+  const h=document.createElement('div');
+  h.className='heart';
+  const s=14+Math.random()*18;
+  h.style.width=s+'px';h.style.height=s+'px';
+  h.style.left=Math.random()*(window.innerWidth-s)+'px';
+  h.style.bottom='-30px';
+  h.style.opacity=(0.6+Math.random()*0.4);
+  const dur=4+Math.random()*5;
+  h.style.transition=`transform ${dur}s linear,opacity ${dur}s linear`;
+  hearts.appendChild(h);
+  requestAnimationFrame(()=>{h.style.transform=`translateY(-${window.innerHeight+100}px) rotate(45deg)`;h.style.opacity='0';});
+  setTimeout(()=>h.remove(),(dur+0.5)*1000);
+}
+setInterval(createHeart,350);
+
+const audio=document.getElementById('bgAudio');
+audio.volume=0.18;
+function tryPlay(){audio.play().catch(()=>{document.addEventListener('click',()=>audio.play(),{once:true});});}
+window.addEventListener('load',tryPlay);
+document.addEventListener('click',tryPlay,{once:true});
+</script>
+
+</body>
+</html>
